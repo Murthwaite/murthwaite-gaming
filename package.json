@@ -1,0 +1,44 @@
+{
+  "name": "murthwaite-tft",
+  "version": "1.0.0",
+  "description": "Murthwaite Gaming — TFT Set 17 Advisor",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win"
+  },
+  "build": {
+    "appId": "com.murthwaite.tft",
+    "productName": "Murthwaite TFT Advisor",
+    "copyright": "Murthwaite Gaming",
+    "files": [
+      "index.html",
+      "data.js",
+      "main.js"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Murthwaite TFT Advisor",
+      "installerHeaderIcon": "icon.ico"
+    },
+    "directories": {
+      "output": "dist"
+    }
+  },
+  "devDependencies": {
+    "electron": "^29.0.0",
+    "electron-builder": "^24.0.0"
+  }
+}
