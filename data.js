@@ -207,27 +207,48 @@ const ITEMS = [
 ];
 
 // ── AUGMENTS ──────────────────────────────────────────────────────────────────
-// Loaded at runtime from Riot Data Dragon.
-// Each entry: { id, name, icon }  — 191 augments across all TFT sets.
-const DDRAGON_VER  = '13.24.1';
-const DDRAGON_BASE = `https://ddragon.leagueoflegends.com/cdn/${DDRAGON_VER}`;
-
-let AUGMENTS = [];
-
-const AUGMENTS_READY = fetch(`${DDRAGON_BASE}/data/en_US/tft-augments.json`)
-  .then(r => {
-    if (!r.ok) throw new Error(`HTTP ${r.status}`);
-    return r.json();
-  })
-  .then(json => {
-    AUGMENTS = Object.values(json.data).map(a => ({
-      id:   a.id,
-      name: a.name,
-      icon: `${DDRAGON_BASE}/img/tft-augment/${a.image.full}`,
-    }));
-    console.log(`[TFT Advisor] Loaded ${AUGMENTS.length} augments from Data Dragon ${DDRAGON_VER}`);
-  })
-  .catch(err => console.warn('[TFT Advisor] Failed to load augments from Data Dragon:', err));
+// Set 17 confirmed augments — sorted by category
+const AUGMENTS = [
+  // Trait Emblems/Hearts/Crests
+  "N.O.V.A. Emblem","N.O.V.A. Heart","N.O.V.A. Crest",
+  "Meeple Emblem","Meeple Heart","Meeple Crest",
+  "Mecha Emblem","Mecha Heart","Mecha Crest",
+  "Conduit Emblem","Conduit Heart","Conduit Crest",
+  "Vanguard Emblem","Vanguard Heart","Vanguard Crest",
+  "Bastion Emblem","Bastion Heart","Bastion Crest",
+  "Dark Star Emblem","Dark Star Heart","Dark Star Crest",
+  "Challenger Emblem","Challenger Heart","Challenger Crest",
+  "Sniper Emblem","Sniper Heart","Sniper Crest",
+  "Replicator Emblem","Replicator Heart","Replicator Crest",
+  "Fateweaver Emblem","Fateweaver Heart","Fateweaver Crest",
+  "Space Groove Emblem","Space Groove Heart","Space Groove Crest",
+  "Anima Emblem","Anima Heart","Anima Crest",
+  "Rogue Emblem","Rogue Heart","Rogue Crest",
+  "Brawler Emblem","Brawler Heart","Brawler Crest",
+  "Marauder Emblem","Marauder Heart","Marauder Crest",
+  "Shepherd Emblem","Shepherd Heart","Shepherd Crest",
+  "Voyager Emblem","Voyager Heart","Voyager Crest",
+  "Psionic Emblem","Psionic Heart","Psionic Crest",
+  "Arbiter Emblem","Arbiter Heart","Arbiter Crest",
+  "Primordian Emblem","Primordian Heart","Primordian Crest",
+  "Stargazer Emblem","Stargazer Heart","Stargazer Crest",
+  "Timebreaker Emblem","Timebreaker Heart","Timebreaker Crest",
+  // Hero Augments (Set 17 specific)
+  "Invader Zed","Mogul's Mail","Bronze For Life","Nasus Hero Augment",
+  // Econ
+  "Tons of Stats!","Cybernetic Uplink","Component Grab Bag",
+  "Loot Subscription","Windfall","Hustler","Partial Acquisitions",
+  "Pandora's Items","Living Forge","Binary Airdrop",
+  // Level/XP
+  "Level Up!","XP Boost","Tactician's Crown","Reroll Augment",
+  "Prismatic Ticket","Thinking Ahead","Jeweled Lotus",
+  // Combat
+  "Giant Slayer Augment","Last Whisper Augment","Rageblade Augment",
+  "IE Augment","Bloodthirster Augment","Shojin Augment",
+  "Gargoyle Augment","Sunfire Augment","Morello Augment",
+  "Warmog's Augment","Radiant Gargoyle","Adaptive Armor",
+  "Makeshift Armor","High End Shopper","Second Wind",
+];
 
 // ── TRAIT BREAKPOINTS ─────────────────────────────────────────────────────────
 const TRAIT_BREAKPOINTS = {
